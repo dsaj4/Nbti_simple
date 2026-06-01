@@ -484,6 +484,36 @@ h1 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
+.photo-frame {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  padding: 10px;
+  border-style: solid;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06)),
+    radial-gradient(circle at 50% 18%, rgba(255, 209, 138, 0.18), transparent 44%);
+}
+
+.photo-frame::after {
+  display: none;
+}
+
+.celebrity-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 .photo-placeholder::after {
   content: "";
   position: absolute;
@@ -573,6 +603,30 @@ h1 {
   font-size: 15px;
   font-weight: 700;
   line-height: 1.85;
+}
+
+.celebrity-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.celebrity-button {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.celebrity-button.active {
+  border-color: rgba(244, 166, 42, 0.82);
+  background: rgba(244, 166, 42, 0.18);
+  color: #fff;
 }
 
 .judge-flow {
@@ -849,6 +903,10 @@ h1 {
   border-color: rgba(244, 166, 42, 0.76);
   background: rgba(244, 166, 42, 0.18);
   color: #fff;
+}
+
+.card-theater-shell.is-guest .scene-button {
+  display: none;
 }
 
 .judge-flow.is-judging .question-cloud {

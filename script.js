@@ -12,6 +12,12 @@ const judgeOutput = document.querySelector("#judgeOutput");
 const sceneTitle = document.querySelector("#sceneTitle");
 const sceneCount = document.querySelector("#sceneCount");
 const sceneButtons = document.querySelectorAll(".scene-button");
+const celebrityImage = document.querySelector("#celebrityImage");
+const celebrityPhotoLabel = document.querySelector("#celebrityPhotoLabel");
+const celebrityName = document.querySelector("#celebrityName");
+const celebritySubtitle = document.querySelector("#celebritySubtitle");
+const celebrityDescription = document.querySelector("#celebrityDescription");
+const celebrityButtons = document.querySelectorAll(".celebrity-button");
 
 const extraVerdicts = [
   "我先锐评",
@@ -48,15 +54,42 @@ const scenarios = [
   },
 ];
 
-const guestScene = {
-  title: "名人参剧：苏格拉底的审判申辩",
-  question:
-    "雅典审判现场，苏格拉底把控诉词翻成连续追问：什么是败坏？什么是虔敬？一个人该如何生活？",
-  tags: ["连续追问", "逻辑申辩", "反向审题"],
-};
+const guestScenes = [
+  {
+    title: "名人参剧：罗永浩的自打嘴巴",
+    count: "GUEST 01",
+    question:
+      "理想主义发布会和现实直播间同时亮起，罗永浩把“以前我说”和“现在我做”摆上台面，承认打脸后继续行动。",
+    tags: ["自打嘴巴", "认真打脸", "继续行动"],
+    photoLabel: "罗永浩名场面",
+    name: "罗永浩",
+    subtitle: "Same Type Guest / DLAH",
+    description:
+      "名人行为幕：在理想主义与现实选择的冲突里，把“打脸”变成自嘲和继续行动。",
+    image:
+      "./assets/celebrity-cameos/dlah-cyber-judge-luo-yonghao-cameo-white-bg-v2.png",
+    alt: "赛博判官与罗永浩的低多边形名场面合影",
+  },
+  {
+    title: "名人参剧：苏格拉底的审判申辩",
+    count: "GUEST 02",
+    question:
+      "雅典审判现场，苏格拉底把控诉词翻成连续追问：什么是败坏？什么是虔敬？一个人该如何生活？",
+    tags: ["连续追问", "逻辑申辩", "反向审题"],
+    photoLabel: "苏格拉底名场面",
+    name: "苏格拉底",
+    subtitle: "Same Type Guest / DLAH",
+    description:
+      "名人行为幕：在雅典审判现场，用连续追问把控诉词拆成逻辑问题，坚持把“该如何生活”问到底。",
+    image:
+      "./assets/celebrity-cameos/dlah-cyber-judge-socrates-cameo-white-bg-v2.png",
+    alt: "赛博判官与苏格拉底的低多边形名场面合影",
+  },
+];
 
 let verdictIndex = 0;
 let scenarioIndex = 0;
+let guestIndex = 0;
 let isGuestMode = false;
 let isTurning = false;
 let pullStartY = null;
@@ -123,7 +156,10 @@ function renderScene(index) {
   restartJudgeAnimation();
 }
 
-function renderGuestScene() {
+function renderGuestScene(index = guestIndex) {
+  const safeIndex = (index + guestScenes.length) % guestScenes.length;
+  const guestScene = guestScenes[safeIndex];
+  guestIndex = safeIndex;
   isGuestMode = true;
   theaterShell.classList.add("is-guest");
   guestPull.setAttribute("aria-pressed", "true");
@@ -131,10 +167,19 @@ function renderGuestScene() {
   judgeFlowButton.textContent = "回到审题幕";
 
   sceneTitle.textContent = guestScene.title;
-  sceneCount.textContent = "GUEST";
+  sceneCount.textContent = guestScene.count;
   questionText.textContent = guestScene.question;
   judgeOutput.innerHTML = guestScene.tags.map((tag) => `<span>${tag}</span>`).join("");
+  celebrityImage.src = guestScene.image;
+  celebrityImage.alt = guestScene.alt;
+  celebrityPhotoLabel.textContent = guestScene.photoLabel;
+  celebrityName.textContent = guestScene.name;
+  celebritySubtitle.textContent = guestScene.subtitle;
+  celebrityDescription.textContent = guestScene.description;
   sceneButtons.forEach((button) => button.classList.remove("active"));
+  celebrityButtons.forEach((button) => {
+    button.classList.toggle("active", Number(button.dataset.guest) === safeIndex);
+  });
 
   restartJudgeAnimation();
 }
@@ -148,7 +193,7 @@ function pullTheaterCord() {
     if (isGuestMode) {
       renderScene(scenarioIndex);
     } else {
-      renderGuestScene();
+      renderGuestScene(guestIndex);
     }
   }, 360);
 
@@ -161,6 +206,12 @@ function pullTheaterCord() {
 sceneButtons.forEach((button) => {
   button.addEventListener("click", () => {
     renderScene(Number(button.dataset.scene));
+  });
+});
+
+celebrityButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    renderGuestScene(Number(button.dataset.guest));
   });
 });
 

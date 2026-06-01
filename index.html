@@ -91,24 +91,26 @@
             </div>
 
             <section class="celebrity-scene" aria-label="同类型名人名场面合影占位">
-              <div class="photo-placeholder">
-                <div class="photo-label">名场面合影占位</div>
-                <div class="duo-silhouettes">
-                  <div class="silhouette cyber">
-                    <span>赛博判官</span>
-                  </div>
-                  <div class="silhouette guest">
-                    <span>苏格拉底</span>
-                  </div>
-                </div>
+              <div class="photo-placeholder photo-frame">
+                <div class="photo-label" id="celebrityPhotoLabel">罗永浩名场面</div>
+                <img
+                  class="celebrity-image"
+                  id="celebrityImage"
+                  src="./assets/celebrity-cameos/dlah-cyber-judge-luo-yonghao-cameo-white-bg-v2.png"
+                  alt="赛博判官与罗永浩的低多边形名场面合影"
+                />
               </div>
               <div class="celebrity-copy">
                 <p class="type-label">同类型名人参剧</p>
-                <h2>苏格拉底</h2>
-                <p class="english-name">Same Type Guest / DLAH</p>
-                <p>
-                  名人行为幕：在雅典审判现场，用连续追问把控诉词拆成逻辑问题，坚持把“该如何生活”问到底。
+                <h2 id="celebrityName">罗永浩</h2>
+                <p class="english-name" id="celebritySubtitle">Same Type Guest / DLAH</p>
+                <p id="celebrityDescription">
+                  名人行为幕：在理想主义与现实选择的冲突里，把“打脸”变成自嘲和继续行动。
                 </p>
+                <div class="celebrity-switcher" aria-label="切换名人参剧场景">
+                  <button class="celebrity-button active" data-guest="0" type="button">罗永浩幕</button>
+                  <button class="celebrity-button" data-guest="1" type="button">苏格拉底幕</button>
+                </div>
               </div>
             </section>
 
