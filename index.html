@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NBTI 赛博判官报告分享页 Demo</title>
+    <meta
+      name="description"
+      content="NBTI 报告分享页前端 demo，以 DLAH / 赛博判官为人物形象。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="share-stage" aria-labelledby="page-title">
+        <div class="topbar">
+          <div>
+            <p class="kicker">NBTI Report Share Demo</p>
+            <h1 id="page-title">赛博判官</h1>
+          </div>
+          <div class="mode-switch" aria-label="Demo mode">
+            <button class="mode-button active" data-view="share" type="button">分享页</button>
+            <button class="mode-button" data-view="framework" type="button">分析框架</button>
+            <button class="mode-button" data-view="references" type="button">参考拆解</button>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="card-theater-shell" aria-label="赛博判官报告卡舞台">
+            <div class="theater-top" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="curtain curtain-left" aria-hidden="true"></div>
+            <div class="curtain curtain-right" aria-hidden="true"></div>
+            <button
+              class="guest-pull-cord"
+              id="guestPull"
+              type="button"
+              aria-pressed="false"
+              aria-label="拉动名人参剧拉绳"
+            >
+              <span class="cord-line" aria-hidden="true"></span>
+              <span class="cord-handle">名人参剧</span>
+            </button>
+            <article class="result-card" id="shareCard" aria-label="DLAH report share card">
+            <div class="result-header">
+              <div class="code-chip">DLAH</div>
+              <div class="share-mark">NBTI 工作人格</div>
+            </div>
+
+            <div class="judge-flow" aria-label="赛博判官剧目审题动效">
+              <div class="stage-header">
+                <div>
+                  <span class="stage-eyebrow">Cyber Court Theater</span>
+                  <strong id="sceneTitle">第一幕：PPT 修改案</strong>
+                </div>
+                <span class="stage-count" id="sceneCount">01 / 04</span>
+              </div>
+              <div class="danmaku-lane" aria-hidden="true">
+                <span>不吹不黑</span>
+                <span>这题我会</span>
+                <span>先别急</span>
+                <span>纯路人锐评</span>
+              </div>
+              <div class="stage-floor">
+                <div class="question-cloud" id="questionCloud">
+                  <span class="cloud-tail"></span>
+                  <strong>场景题</strong>
+                  <p id="questionText">同事说“我只是提个建议”，但 PPT 已经改了 18 版。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-lockup">
+              <div class="character-orbit">
+                <div class="orbit-ring ring-one"></div>
+                <div class="orbit-ring ring-two"></div>
+                <img
+                  class="character-img"
+                  src="./assets/dlah-cyber-judge.png"
+                  alt="赛博判官低多边形人物形象"
+                />
+              </div>
+              <div class="name-block">
+                <p class="type-label">你的报告类型是</p>
+                <h2>赛博判官</h2>
+                <p class="english-name">Cyber Judge</p>
+              </div>
+            </div>
+
+            <section class="celebrity-scene" aria-label="同类型名人名场面合影占位">
+              <div class="photo-placeholder">
+                <div class="photo-label">名场面合影占位</div>
+                <div class="duo-silhouettes">
+                  <div class="silhouette cyber">
+                    <span>赛博判官</span>
+                  </div>
+                  <div class="silhouette guest">
+                    <span>苏格拉底</span>
+                  </div>
+                </div>
+              </div>
+              <div class="celebrity-copy">
+                <p class="type-label">同类型名人参剧</p>
+                <h2>苏格拉底</h2>
+                <p class="english-name">Same Type Guest / DLAH</p>
+                <p>
+                  名人行为幕：在雅典审判现场，用连续追问把控诉词拆成逻辑问题，坚持把“该如何生活”问到底。
+                </p>
+              </div>
+            </section>
+
+            <div class="answer-deck" aria-label="赛博判官回答区">
+              <div class="answer-label">判官回答</div>
+              <div class="judge-output" id="judgeOutput">
+                <span>逻辑过检</span>
+                <span>情绪扣分</span>
+                <span>建议重练</span>
+              </div>
+              <div class="scene-switcher" aria-label="切换赛博判官审题剧目">
+                <button class="scene-button active" data-scene="0" type="button">PPT 案</button>
+                <button class="scene-button" data-scene="1" type="button">语音案</button>
+                <button class="scene-button" data-scene="2" type="button">客观案</button>
+                <button class="scene-button" data-scene="3" type="button">指标案</button>
+                <button class="flow-button" id="judgeFlowButton" type="button">下一幕</button>
+              </div>
+            </div>
+
+            <div class="verdict-strip" aria-label="赛博判官口头禅">
+              <span>不吹不黑</span>
+              <span>纯路人</span>
+              <span>有一说一</span>
+              <span>拉完了</span>
+              <span>菜就多练</span>
+            </div>
+
+            <p class="result-summary">
+              你擅长把混乱讨论切成可判定的结构：先拆逻辑，再看价值，最后给出一句快准狠的现场评分。
+            </p>
+
+            <div class="dimension-stack" aria-label="DLAH dimensions">
+              <div class="dimension-row" style="--value: 88%; --bar: #21c7d9">
+                <span>D 解构</span>
+                <div class="track"><i></i></div>
+                <strong>88</strong>
+              </div>
+              <div class="dimension-row" style="--value: 84%; --bar: #4f46e5">
+                <span>L 逻辑</span>
+                <div class="track"><i></i></div>
+                <strong>84</strong>
+              </div>
+              <div class="dimension-row" style="--value: 91%; --bar: #f05263">
+                <span>A 敏捷</span>
+                <div class="track"><i></i></div>
+                <strong>91</strong>
+              </div>
+              <div class="dimension-row" style="--value: 79%; --bar: #f4a62a">
+                <span>H 人文</span>
+                <div class="track"><i></i></div>
+                <strong>79</strong>
+              </div>
+            </div>
+
+            <div class="share-footer">
+              <span>适合截图转发的轻报告卡</span>
+              <button class="ghost-button" id="stampButton" type="button">追加判词</button>
+            </div>
+            </article>
+            <div class="stage-base" aria-hidden="true"></div>
+          </div>
+
+          <aside class="insight-panel" aria-label="report page analysis">
+            <section class="panel-view is-visible" data-panel="share">
+              <p class="section-label">页面构建思路</p>
+              <h2>先让用户一眼认出自己，再给他分享理由</h2>
+              <div class="analysis-list">
+                <div>
+                  <strong>动效交互</strong>
+                  <p>人物轻微悬浮、判词可追加、维度条入场，制造“结果刚出炉”的反馈感。</p>
+                </div>
+                <div>
+                  <strong>结构排版</strong>
+                  <p>左侧固定为可截图结果卡，右侧解释类型逻辑；移动端顺序变成先卡片后说明。</p>
+                </div>
+                <div>
+                  <strong>人物形象</strong>
+                  <p>低多边形小人保留 MBTI 式亲和感，但加入判笔、倒拇指、赛博 UI 来做 NBTI 差异。</p>
+                </div>
+                <div>
+                  <strong>形象命名</strong>
+                  <p>“赛博判官”比正式名更有传播性，适合放在大标题；DLAH 保留为可信的结构锚点。</p>
+                </div>
+                <div>
+                  <strong>形象解释</strong>
+                  <p>解释文案采用“能力 + 梗感 + 风险边界”，避免变成严肃心理诊断。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel-view" data-panel="framework">
+              <p class="section-label">趣味测试分析框架</p>
+              <h2>报告分享页需要同时完成五件事</h2>
+              <ol class="framework-steps">
+                <li><strong>结果确认：</strong>名字、代码、人物形象在首屏锁死，用户不用找重点。</li>
+                <li><strong>情绪放大：</strong>用动作、口头禅、轻动效把“像我”变成“我要发出去”。</li>
+                <li><strong>结构证明：</strong>维度条、关键词、短解释提供可相信的依据。</li>
+                <li><strong>社交钩子：</strong>输出可截图卡、吐槽判词、朋友可对照的标签。</li>
+                <li><strong>回流路径：</strong>分享按钮、重新测试、查看其他人格，承接传播流量。</li>
+              </ol>
+              <div class="mini-matrix">
+                <span>动效交互</span><span>结构排版</span><span>人物形象</span>
+                <span>形象命名</span><span>形象解释</span><span>分享转化</span>
+              </div>
+            </section>
+
+            <section class="panel-view" data-panel="references">
+              <p class="section-label">参考网站拆解</p>
+              <h2>三类参考各自提供一个答案</h2>
+              <div class="reference-stack">
+                <article>
+                  <h3>Deeply GodBTI</h3>
+                  <p>用满屏梗图、弹幕、渐变背景和进度反馈建立娱乐场域。适合借鉴“测试前半段的热闹感”和“用户愿意继续点”的动效节奏。</p>
+                </article>
+                <article>
+                  <h3>Bilibili XSTY</h3>
+                  <p>把测试包装成一个明确 IP 主题，首屏轻、加载快、文案聚焦“你是哪位英雄”。适合借鉴主题化命名和结果人格的角色化叙事。</p>
+                </article>
+                <article>
+                  <h3>Starkawaii NBTI</h3>
+                  <p>结果页更接近产品化报告：人物图、分数条、雷达/排名、分享图生成。适合借鉴报告模块和 html2canvas 分享链路。</p>
+                </article>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="breakdown-band" aria-label="layout blueprint">
+        <div class="blueprint-card">
+          <p class="section-label">NBTI 分享页蓝图</p>
+          <h2>推荐采用“角色卡 + 解释面板 + 分享动作”的三段式</h2>
+          <div class="blueprint-grid">
+            <div>
+              <b>01 角色卡</b>
+              <p>负责截图传播：姓名、代码、人物、维度、判词必须在一屏内闭环。</p>
+            </div>
+            <div>
+              <b>02 报告解释</b>
+              <p>负责增强可信感：为什么是这个类型、优势/盲区、社交场景怎么表现。</p>
+            </div>
+            <div>
+              <b>03 分享动作</b>
+              <p>负责传播转化：生成图片、复制文案、重新测试、查看 16 人格矩阵。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
