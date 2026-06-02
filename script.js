@@ -5,6 +5,7 @@ const theaterShell = document.querySelector(".card-theater-shell");
 const guestPull = document.querySelector("#guestPull");
 const judgeFlow = document.querySelector(".judge-flow");
 const judgeFlowButton = document.querySelector("#judgeFlowButton");
+const stageEyebrow = document.querySelector("#stageEyebrow");
 const questionText = document.querySelector("#questionText");
 const questionLabel = document.querySelector("#questionLabel");
 const judgeOutput = document.querySelector("#judgeOutput");
@@ -19,11 +20,12 @@ const danmakuItems = [
 ];
 const celebrityImage = document.querySelector("#celebrityImage");
 const celebrityPhotoLabel = document.querySelector("#celebrityPhotoLabel");
-const celebrityName = document.querySelector("#celebrityName");
-const celebritySubtitle = document.querySelector("#celebritySubtitle");
-const celebrityDescription = document.querySelector("#celebrityDescription");
 const celebrityButtons = document.querySelectorAll(".celebrity-button");
 const shareCopyOptions = document.querySelectorAll(".share-copy-option");
+const commentaryTabs = document.querySelectorAll(".commentary-tab");
+const commentaryTitle = document.querySelector("#commentaryTitle");
+const commentaryBody = document.querySelector("#commentaryBody");
+const commentaryQuote = document.querySelector("#commentaryQuote");
 const copyResultButton = document.querySelector("#copyResultButton");
 const saveCardButton = document.querySelector("#saveCardButton");
 const copyShareTextButton = document.querySelector("#copyShareTextButton");
@@ -64,11 +66,22 @@ const scenarios = [
     tags: ["拉完了", "指标缺席", "菜就多练"],
   },
 ];
+const typeScene = {
+  title: "你的报告类型是：赛博判官",
+  count: "DLAH",
+  eyebrow: "Cyber Court Theater",
+  label: "场景云",
+  question:
+    "一群人明明可以把问题说清楚，偏偏用热闹掩盖标准缺席。你脑内的小型审题庭，已经开始开庭。",
+  tags: ["先审题", "再锐评", "标准不能软"],
+  danmaku: ["不吹不黑", "纯路人", "有一说一", "这题还没判完"],
+};
 
 const guestScenes = [
   {
     title: "Act I · 喜剧场：罗永浩自打嘴巴",
     count: "ACT 01",
+    eyebrow: "Cyber Court Theater · Act I",
     label: "罗永浩 · 自打嘴巴",
     question:
       "理想主义发布会 vs 直播间的“交个朋友”。同一张嘴，两种真相。他拍拍自己的脸：“打脸归打脸，活儿还得干。”",
@@ -82,8 +95,6 @@ const guestScenes = [
     photoLabel: "罗永浩名场面",
     name: "罗永浩",
     subtitle: "Same Type Guest / DLAH",
-    description:
-      "打脸是版本更新，不是卸载重装。",
     image:
       "./assets/celebrity-cameos/dlah-cyber-judge-luo-yonghao-cameo-white-bg-v2.png",
     alt: "赛博判官与罗永浩的低多边形名场面合影",
@@ -91,6 +102,7 @@ const guestScenes = [
   {
     title: "Act II · 正剧场：苏格拉底临终反向审题",
     count: "ACT 02",
+    eyebrow: "Cyber Court Theater · Act II",
     label: "苏格拉底 · 临终反向审题",
     question:
       "雅典审判场，毒酒已备好。他不要赦免，只要定义：“什么叫败坏？什么叫虔敬？一个人，到底该怎样活？”",
@@ -104,17 +116,30 @@ const guestScenes = [
     photoLabel: "苏格拉底名场面",
     name: "苏格拉底",
     subtitle: "Same Type Guest / DLAH",
-    description:
-      "死亡面前，先问定义，再谈情绪。",
     image:
       "./assets/celebrity-cameos/dlah-cyber-judge-socrates-cameo-white-bg-v2.png",
     alt: "赛博判官与苏格拉底的低多边形名场面合影",
   },
 ];
 
+const commentaryItems = [
+  {
+    title: "罗永浩自评：我这叫“现实驱动型系统更新”",
+    body:
+      "“你们都说我打脸。行，我认。但一个人敢把几年前的发布会拿出来跟现在的自己对比，这事儿本身就挺赛博判官的。脸可以肿，逻辑不能塌。打脸归打脸，更新完系统继续干活。”",
+    quote: "罗永浩同款判官：打脸是版本更新，不是卸载重装。",
+  },
+  {
+    title: "苏格拉底自评：我只是把审判场改成了讨论组",
+    body:
+      "“他们说我快死了还在嘴硬。我想了想，说这是‘求知’。你们给的题目里有太多没澄清的概念，所以先定义，再讨论。毒酒可以喝，但问题必须先说清楚。”",
+    quote: "苏格拉底同款判官：死亡面前，先问定义，再谈情绪。",
+  },
+];
+
 let verdictIndex = 0;
 let scenarioIndex = 0;
-let guestIndex = 0;
+let guestIndex = -1;
 let isGuestMode = false;
 let isTurning = false;
 let pullStartY = null;
@@ -156,6 +181,48 @@ function restartJudgeAnimation() {
   judgeFlow.classList.add("is-judging");
 }
 
+function updateStageCopy(scene) {
+  if (stageEyebrow) {
+    stageEyebrow.textContent = scene.eyebrow;
+  }
+  sceneTitle.textContent = scene.title;
+  sceneCount.textContent = scene.count;
+  if (questionLabel) {
+    questionLabel.textContent = scene.label;
+  }
+  questionText.textContent = scene.question;
+  judgeOutput.innerHTML = scene.tags.map((tag) => `<span>${tag}</span>`).join("");
+  danmakuItems.forEach((item, itemIndex) => {
+    if (item) {
+      item.textContent = scene.danmaku[itemIndex];
+    }
+  });
+}
+
+function updateSceneButtons(activeMode, activeGuest = -1) {
+  sceneButtons.forEach((button) => {
+    const isTypeButton = button.dataset.scene === "type";
+    const buttonGuest = Number(button.dataset.guest);
+    button.classList.toggle(
+      "active",
+      (activeMode === "type" && isTypeButton) ||
+        (activeMode === "guest" && buttonGuest === activeGuest),
+    );
+  });
+}
+
+function renderTypeScene() {
+  guestIndex = -1;
+  isGuestMode = false;
+  theaterShell.classList.remove("is-guest");
+  guestPull.setAttribute("aria-pressed", "false");
+  guestPull.querySelector(".cord-handle").textContent = "名人参剧";
+  judgeFlowButton.textContent = "名人参剧";
+  updateStageCopy(typeScene);
+  updateSceneButtons("type");
+  restartJudgeAnimation();
+}
+
 function renderScene(index) {
   const safeIndex = (index + scenarios.length) % scenarios.length;
   const nextScenario = scenarios[safeIndex];
@@ -189,28 +256,11 @@ function renderGuestScene(index = guestIndex) {
   guestPull.querySelector(".cord-handle").textContent = "切换参剧";
   judgeFlowButton.textContent = "下一幕";
 
-  sceneTitle.textContent = guestScene.title;
-  sceneCount.textContent = guestScene.count;
-  if (questionLabel) {
-    questionLabel.textContent = guestScene.label;
-  }
-  questionText.textContent = guestScene.question;
-  judgeOutput.innerHTML = guestScene.tags.map((tag) => `<span>${tag}</span>`).join("");
-  danmakuItems.forEach((item, itemIndex) => {
-    if (item) {
-      item.textContent = guestScene.danmaku[itemIndex];
-    }
-  });
+  updateStageCopy(guestScene);
   celebrityImage.src = guestScene.image;
   celebrityImage.alt = guestScene.alt;
   celebrityPhotoLabel.textContent = guestScene.photoLabel;
-  celebrityName.textContent = guestScene.name;
-  celebritySubtitle.textContent = guestScene.subtitle;
-  celebrityDescription.textContent = guestScene.description;
-  sceneButtons.forEach((button) => button.classList.remove("active"));
-  celebrityButtons.forEach((button) => {
-    button.classList.toggle("active", Number(button.dataset.guest) === safeIndex);
-  });
+  updateSceneButtons("guest", safeIndex);
 
   restartJudgeAnimation();
 }
@@ -221,7 +271,7 @@ function pullTheaterCord() {
   theaterShell.classList.add("is-turning");
 
   window.setTimeout(() => {
-    renderGuestScene(isGuestMode ? guestIndex + 1 : guestIndex);
+    renderGuestScene(isGuestMode ? guestIndex + 1 : 0);
   }, 360);
 
   window.setTimeout(() => {
@@ -232,7 +282,11 @@ function pullTheaterCord() {
 
 sceneButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    renderScene(Number(button.dataset.scene));
+    if (button.dataset.scene === "type") {
+      renderTypeScene();
+      return;
+    }
+    renderGuestScene(Number(button.dataset.guest));
   });
 });
 
@@ -247,7 +301,7 @@ judgeFlowButton.addEventListener("click", () => {
     renderGuestScene(guestIndex + 1);
     return;
   }
-  renderGuestScene(guestIndex);
+  renderGuestScene(0);
 });
 
 guestPull.addEventListener("pointerdown", (event) => {
@@ -295,14 +349,27 @@ shareCopyOptions.forEach((button) => {
   });
 });
 
+commentaryTabs.forEach((button) => {
+  button.addEventListener("click", () => {
+    const itemIndex = Number(button.dataset.commentary);
+    const item = commentaryItems[itemIndex];
+    commentaryTitle.textContent = item.title;
+    commentaryBody.textContent = item.body;
+    commentaryQuote.textContent = item.quote;
+    commentaryTabs.forEach((tab) => {
+      tab.classList.toggle("active", tab === button);
+    });
+  });
+});
+
 saveCardButton.addEventListener("click", () => {
   shareCard.scrollIntoView({ behavior: "smooth", block: "center" });
   setButtonDone(saveCardButton, "长按或截图保存");
 });
 
 restartButton.addEventListener("click", () => {
-  renderGuestScene(0);
+  renderTypeScene();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-renderGuestScene(0);
+renderTypeScene();

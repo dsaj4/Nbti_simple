@@ -48,28 +48,28 @@
             <article class="result-card" id="shareCard" aria-label="DLAH report share card">
               <div class="result-header">
                 <div class="code-chip">DLAH</div>
-                <div class="share-mark">Cyber Judge · 名人参剧</div>
+                <div class="share-mark">Cyber Judge · DLAH</div>
               </div>
 
               <div class="judge-flow" aria-label="赛博判官剧目审题动效">
                 <div class="stage-header">
                   <div>
-                    <span class="stage-eyebrow">Cyber Court Theater · 赛博锐评法庭</span>
-                    <strong id="sceneTitle">Act I · 喜剧场：罗永浩自打嘴巴</strong>
+                    <span class="stage-eyebrow" id="stageEyebrow">Cyber Court Theater</span>
+                    <strong id="sceneTitle">你的报告类型是：赛博判官</strong>
                   </div>
-                  <span class="stage-count" id="sceneCount">ACT 01</span>
+                  <span class="stage-count" id="sceneCount">DLAH</span>
                 </div>
                 <div class="danmaku-lane" aria-hidden="true">
-                  <span id="danmakuOne">别骂了，我自己先扇。</span>
-                  <span id="danmakuTwo">脸可以肿，债必须还。</span>
-                  <span id="danmakuThree">谁说打脸不算行动力？</span>
-                  <span id="danmakuFour">系统更新中，版本号：真还传。</span>
+                  <span id="danmakuOne">不吹不黑</span>
+                  <span id="danmakuTwo">纯路人</span>
+                  <span id="danmakuThree">有一说一</span>
+                  <span id="danmakuFour">这题还没判完</span>
                 </div>
                 <div class="stage-floor">
                   <div class="question-cloud" id="questionCloud">
                     <span class="cloud-tail"></span>
-                    <strong id="questionLabel">名人参剧</strong>
-                    <p id="questionText">理想主义发布会 vs 直播间的“交个朋友”。同一张嘴，两种真相。他拍拍自己的脸：“打脸归打脸，活儿还得干。”</p>
+                    <strong id="questionLabel">场景云</strong>
+                    <p id="questionText">一群人明明可以把问题说清楚，偏偏用热闹掩盖标准缺席。你脑内的小型审题庭，已经开始开庭。</p>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
 
               <section class="celebrity-scene" aria-label="同类型名人名场面">
                 <div class="photo-placeholder photo-frame">
-                  <div class="photo-label" id="celebrityPhotoLabel">罗永浩名场面</div>
+                  <div class="photo-label" id="celebrityPhotoLabel" aria-hidden="true">罗永浩名场面</div>
                   <img
                     class="celebrity-image"
                     id="celebrityImage"
@@ -101,32 +101,19 @@
                     alt="赛博判官与罗永浩的低多边形名场面合影"
                   />
                 </div>
-                <div class="celebrity-copy">
-                  <p class="type-label">同类型名人参剧</p>
-                  <h2 id="celebrityName">罗永浩</h2>
-                  <p class="english-name" id="celebritySubtitle">Same Type Guest / DLAH</p>
-                  <p id="celebrityDescription">
-                    名人行为幕：打脸是版本更新，不是卸载重装。
-                  </p>
-                  <div class="celebrity-switcher" aria-label="切换名人参剧场景">
-                    <button class="celebrity-button active" data-guest="0" type="button">Act I 罗永浩</button>
-                    <button class="celebrity-button" data-guest="1" type="button">Act II 苏格拉底</button>
-                  </div>
-                </div>
               </section>
 
               <div class="answer-deck" aria-label="赛博判官回答区">
-                <div class="answer-label">回答弹幕</div>
+                <div class="answer-label">判官回答</div>
                 <div class="judge-output" id="judgeOutput">
-                  <span>别骂了，我自己先扇</span>
-                  <span>脸可以肿，债必须还</span>
-                  <span>系统更新中</span>
+                  <span>先审题</span>
+                  <span>再锐评</span>
+                  <span>标准不能软</span>
                 </div>
                 <div class="scene-switcher" aria-label="切换赛博判官审题剧目">
-                  <button class="scene-button active" data-scene="0" type="button">PPT 案</button>
-                  <button class="scene-button" data-scene="1" type="button">语音案</button>
-                  <button class="scene-button" data-scene="2" type="button">客观案</button>
-                  <button class="scene-button" data-scene="3" type="button">指标案</button>
+                  <button class="scene-button active" data-scene="type" type="button">类型形象</button>
+                  <button class="scene-button" data-guest="0" type="button">罗永浩幕</button>
+                  <button class="scene-button" data-guest="1" type="button">苏格拉底幕</button>
                   <button class="flow-button" id="judgeFlowButton" type="button">下一幕</button>
                 </div>
               </div>
@@ -176,50 +163,6 @@
 
           <aside class="report-panel" aria-label="赛博判官完整报告">
             <section class="report-module result-intro">
-              <p class="section-label">判官鉴定局</p>
-              <h2>名人也是这个类型，听听他们怎么说</h2>
-              <p>
-                赛博判官不是单纯爱吐槽，而是看到问题时会先抓结构、再抓证据、最后给出价值判断。罗永浩是喜剧版的自我开庭，苏格拉底是正剧版的反向审题。
-              </p>
-              <div class="result-pills">
-                <span>有梗</span>
-                <span>自嘲</span>
-                <span>参与式</span>
-                <span>可截图</span>
-              </div>
-            </section>
-
-            <section class="report-module celebrity-commentary">
-              <p class="section-label">名人点评 · 罗永浩篇</p>
-              <h2>罗永浩自评：我这叫“现实驱动型系统更新”</h2>
-              <p>
-                “你们都说我打脸。行，我认。但你们想想，一个人敢把几年前的发布会拿出来跟现在的自己对比，这事儿本身就挺赛博判官的。
-              </p>
-              <p>
-                我当初那些‘天生骄傲’，立的标准比谁都高。后来现实啪啪打脸，怎么办？嘴硬没用，跑路更难看。那我就坐下来，把‘以前我说的’和‘现在我得做的’摆一桌，自己审自己。
-              </p>
-              <p>
-                判词很简单：脸可以肿，逻辑不能塌。打脸归打脸，更新完系统继续干活。所以这个赛博判官类型，说白了就是——你敢不敢给自己开庭？我开了，我判了，我还在干活。就这。”
-              </p>
-              <blockquote>罗永浩同款判官：打脸是版本更新，不是卸载重装。</blockquote>
-            </section>
-
-            <section class="report-module celebrity-commentary">
-              <p class="section-label">名人点评 · 苏格拉底篇</p>
-              <h2>苏格拉底自评：我只是把审判场改成了讨论组</h2>
-              <p>
-                “他们说我快死了还在嘴硬。我想了想，说这是‘求知’。那天的情形很简单——五百个雅典人坐在那儿，准备判我。我看了看起诉书，觉得问题太多，得一个一个过。
-              </p>
-              <p>
-                ‘败坏青年’是什么意思？先定义。‘不信神’又指什么？再讨论。我说我没时间害怕，因为你们给的题目里有太多没澄清的概念。
-              </p>
-              <p>
-                你看，这就是赛博判官。别人觉得你倔、你轴、你死到临头还在抬杠。但你自己知道，你不是在抬杠，你是在审判混乱本身。毒酒可以喝，但问题必须先说清楚。”
-              </p>
-              <blockquote>苏格拉底同款判官：死亡面前，先问定义，再谈情绪。</blockquote>
-            </section>
-
-            <section class="report-module">
               <p class="section-label">类型描述 · 有梗概括</p>
               <h2>赛博判官：脑内自带审题庭的人间清醒</h2>
               <p>
@@ -231,9 +174,25 @@
               <p>
                 罗永浩打脸后继续干活，苏格拉底临死前还在追问定义——这俩都是你，一个喜剧版，一个正剧版。共同点只有一条：场面可以乱，逻辑不能乱；态度可以软，标准不能软。
               </p>
-              <p>
-                你是赛博判官。你负责在所有人都说“差不多得了”的时候，把桌子一拍：先别走，这题还没判完。
+              <div class="result-pills">
+                <span>不吹不黑</span>
+                <span>纯路人</span>
+                <span>有一说一</span>
+                <span>菜就多练</span>
+              </div>
+            </section>
+
+            <section class="report-module celebrity-commentary">
+              <p class="section-label">名人点评</p>
+              <div class="commentary-tabs" aria-label="切换名人点评">
+                <button class="commentary-tab active" data-commentary="0" type="button">罗永浩</button>
+                <button class="commentary-tab" data-commentary="1" type="button">苏格拉底</button>
+              </div>
+              <h2 id="commentaryTitle">罗永浩自评：我这叫“现实驱动型系统更新”</h2>
+              <p id="commentaryBody">
+                “你们都说我打脸。行，我认。但一个人敢把几年前的发布会拿出来跟现在的自己对比，这事儿本身就挺赛博判官的。脸可以肿，逻辑不能塌。打脸归打脸，更新完系统继续干活。”
               </p>
+              <blockquote id="commentaryQuote">罗永浩同款判官：打脸是版本更新，不是卸载重装。</blockquote>
             </section>
 
             <section class="report-module share-module">
