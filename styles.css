@@ -30,6 +30,10 @@ button {
   font: inherit;
 }
 
+blockquote {
+  margin: 0;
+}
+
 .app-shell {
   min-height: 100vh;
 }
@@ -72,33 +76,6 @@ h1 {
   letter-spacing: 0;
 }
 
-.mode-switch {
-  display: inline-flex;
-  gap: 6px;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 8px 22px rgba(20, 24, 32, 0.06);
-}
-
-.mode-button {
-  min-width: 82px;
-  border: 0;
-  border-radius: 6px;
-  padding: 10px 12px;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.mode-button.active {
-  background: var(--ink);
-  color: #fff;
-}
-
 .content-grid {
   display: grid;
   grid-template-columns: minmax(320px, 0.94fr) minmax(360px, 1.06fr);
@@ -106,14 +83,59 @@ h1 {
   align-items: stretch;
 }
 
+.page-subtitle {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.report-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.primary-action,
+.secondary-action {
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.primary-action {
+  border: 0;
+  background: linear-gradient(90deg, var(--indigo), var(--coral));
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(240, 82, 99, 0.18);
+}
+
+.secondary-action {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+}
+
 .card-theater-shell,
 .result-card,
-.insight-panel,
+.report-panel,
 .blueprint-card {
   border: 1px solid rgba(255, 255, 255, 0.84);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
+}
+
+.report-panel {
+  display: grid;
+  gap: 14px;
+  align-self: start;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .card-theater-shell {
@@ -1089,6 +1111,107 @@ h1 {
   gap: 12px;
 }
 
+.report-module {
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 46px rgba(42, 48, 66, 0.1);
+  padding: 22px;
+}
+
+.report-module h2,
+.report-module h3 {
+  margin-bottom: 12px;
+  line-height: 1.18;
+}
+
+.report-module h2 {
+  font-size: clamp(26px, 3vw, 38px);
+}
+
+.report-module h3 {
+  font-size: 19px;
+}
+
+.report-module p {
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.result-intro {
+  background:
+    linear-gradient(135deg, rgba(33, 199, 217, 0.14), rgba(255, 255, 255, 0.9) 38%),
+    #fff;
+}
+
+.result-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.result-pills span {
+  border-radius: 999px;
+  background: #f1f4f9;
+  color: #333846;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.trait-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trait-list > div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 15px;
+}
+
+.trait-list b {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.trait-list p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.split-module {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.split-module > div {
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.share-module blockquote {
+  border-left: 4px solid var(--coral);
+  border-radius: 0 8px 8px 0;
+  background: #fff6f7;
+  color: #333846;
+  padding: 16px 18px;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.8;
+}
+
+.inline-actions {
+  margin-top: 16px;
+}
+
 .analysis-list > div,
 .reference-stack article,
 .blueprint-grid > div {
@@ -1294,18 +1417,17 @@ h1 {
     flex-direction: column;
   }
 
-  .mode-switch {
+  .report-actions {
     width: 100%;
-    overflow-x: auto;
-  }
-
-  .mode-button {
-    flex: 1 0 auto;
   }
 
   .content-grid,
   .blueprint-grid {
     grid-template-columns: 1fr;
+  }
+
+  .report-grid {
+    gap: 16px;
   }
 
   .card-theater-shell {
@@ -1340,6 +1462,15 @@ h1 {
   .insight-panel {
     min-height: 0;
     padding: 20px;
+  }
+
+  .report-module {
+    padding: 18px;
+  }
+
+  .trait-list,
+  .split-module {
+    grid-template-columns: 1fr;
   }
 
   .hero-lockup {

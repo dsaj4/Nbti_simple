@@ -1,5 +1,3 @@
-const modeButtons = document.querySelectorAll(".mode-button");
-const panelViews = document.querySelectorAll(".panel-view");
 const verdictStrip = document.querySelector(".verdict-strip");
 const stampButton = document.querySelector("#stampButton");
 const shareCard = document.querySelector("#shareCard");
@@ -18,6 +16,11 @@ const celebrityName = document.querySelector("#celebrityName");
 const celebritySubtitle = document.querySelector("#celebritySubtitle");
 const celebrityDescription = document.querySelector("#celebrityDescription");
 const celebrityButtons = document.querySelectorAll(".celebrity-button");
+const copyResultButton = document.querySelector("#copyResultButton");
+const saveCardButton = document.querySelector("#saveCardButton");
+const copyShareTextButton = document.querySelector("#copyShareTextButton");
+const restartButton = document.querySelector("#restartButton");
+const shareText = document.querySelector("#shareText");
 
 const extraVerdicts = [
   "我先锐评",
@@ -95,25 +98,23 @@ let isTurning = false;
 let pullStartY = null;
 let cordDragTriggered = false;
 
-modeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const nextView = button.dataset.view;
+function setButtonDone(button, text = "已复制") {
+  if (!button) return;
+  const originalText = button.textContent;
+  button.textContent = text;
+  window.setTimeout(() => {
+    button.textContent = originalText;
+  }, 1200);
+}
 
-    modeButtons.forEach((item) => item.classList.toggle("active", item === button));
-    panelViews.forEach((panel) => {
-      panel.classList.toggle("is-visible", panel.dataset.panel === nextView);
-    });
-
-    shareCard.animate(
-      [
-        { transform: "translateY(0)" },
-        { transform: "translateY(-6px)" },
-        { transform: "translateY(0)" },
-      ],
-      { duration: 360, easing: "ease-out" },
-    );
-  });
-});
+async function copyText(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+    setButtonDone(button);
+  } catch (error) {
+    window.prompt("复制这段文字：", text);
+  }
+}
 
 stampButton.addEventListener("click", () => {
   const chip = document.createElement("span");
@@ -249,6 +250,24 @@ guestPull.addEventListener("click", () => {
     return;
   }
   pullTheaterCord();
+});
+
+copyResultButton.addEventListener("click", () => {
+  copyText("我的 NBTI 工作人格是「DLAH / 赛博判官」：不吹不黑，纯路人，有一说一。", copyResultButton);
+});
+
+copyShareTextButton.addEventListener("click", () => {
+  copyText(shareText.textContent.trim(), copyShareTextButton);
+});
+
+saveCardButton.addEventListener("click", () => {
+  shareCard.scrollIntoView({ behavior: "smooth", block: "center" });
+  setButtonDone(saveCardButton, "长按或截图保存");
+});
+
+restartButton.addEventListener("click", () => {
+  renderScene(0);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 renderScene(0);
