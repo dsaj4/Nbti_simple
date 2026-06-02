@@ -6,16 +6,24 @@ const guestPull = document.querySelector("#guestPull");
 const judgeFlow = document.querySelector(".judge-flow");
 const judgeFlowButton = document.querySelector("#judgeFlowButton");
 const questionText = document.querySelector("#questionText");
+const questionLabel = document.querySelector("#questionLabel");
 const judgeOutput = document.querySelector("#judgeOutput");
 const sceneTitle = document.querySelector("#sceneTitle");
 const sceneCount = document.querySelector("#sceneCount");
 const sceneButtons = document.querySelectorAll(".scene-button");
+const danmakuItems = [
+  document.querySelector("#danmakuOne"),
+  document.querySelector("#danmakuTwo"),
+  document.querySelector("#danmakuThree"),
+  document.querySelector("#danmakuFour"),
+];
 const celebrityImage = document.querySelector("#celebrityImage");
 const celebrityPhotoLabel = document.querySelector("#celebrityPhotoLabel");
 const celebrityName = document.querySelector("#celebrityName");
 const celebritySubtitle = document.querySelector("#celebritySubtitle");
 const celebrityDescription = document.querySelector("#celebrityDescription");
 const celebrityButtons = document.querySelectorAll(".celebrity-button");
+const shareCopyOptions = document.querySelectorAll(".share-copy-option");
 const copyResultButton = document.querySelector("#copyResultButton");
 const saveCardButton = document.querySelector("#saveCardButton");
 const copyShareTextButton = document.querySelector("#copyShareTextButton");
@@ -59,31 +67,45 @@ const scenarios = [
 
 const guestScenes = [
   {
-    title: "名人参剧：罗永浩的自打嘴巴",
-    count: "GUEST 01",
+    title: "Act I · 喜剧场：罗永浩自打嘴巴",
+    count: "ACT 01",
+    label: "罗永浩 · 自打嘴巴",
     question:
-      "理想主义发布会和现实直播间同时亮起，罗永浩把“以前我说”和“现在我做”摆上台面，承认打脸后继续行动。",
-    tags: ["自打嘴巴", "认真打脸", "继续行动"],
+      "理想主义发布会 vs 直播间的“交个朋友”。同一张嘴，两种真相。他拍拍自己的脸：“打脸归打脸，活儿还得干。”",
+    tags: ["别骂了，我自己先扇", "脸可以肿，债必须还", "系统更新中"],
+    danmaku: [
+      "别骂了，我自己先扇。",
+      "脸可以肿，债必须还。",
+      "谁说打脸不算行动力？",
+      "系统更新中，版本号：真还传。",
+    ],
     photoLabel: "罗永浩名场面",
     name: "罗永浩",
     subtitle: "Same Type Guest / DLAH",
     description:
-      "名人行为幕：在理想主义与现实选择的冲突里，把“打脸”变成自嘲和继续行动。",
+      "打脸是版本更新，不是卸载重装。",
     image:
       "./assets/celebrity-cameos/dlah-cyber-judge-luo-yonghao-cameo-white-bg-v2.png",
     alt: "赛博判官与罗永浩的低多边形名场面合影",
   },
   {
-    title: "名人参剧：苏格拉底的审判申辩",
-    count: "GUEST 02",
+    title: "Act II · 正剧场：苏格拉底临终反向审题",
+    count: "ACT 02",
+    label: "苏格拉底 · 临终反向审题",
     question:
-      "雅典审判现场，苏格拉底把控诉词翻成连续追问：什么是败坏？什么是虔敬？一个人该如何生活？",
-    tags: ["连续追问", "逻辑申辩", "反向审题"],
+      "雅典审判场，毒酒已备好。他不要赦免，只要定义：“什么叫败坏？什么叫虔敬？一个人，到底该怎样活？”",
+    tags: ["别急，先审题", "概念必须清楚", "最后留给追问"],
+    danmaku: [
+      "别急，先审题。",
+      "死刑可以，概念必须清楚。",
+      "你们审判我，我审判问题本身。",
+      "最后一口气，也留给追问。",
+    ],
     photoLabel: "苏格拉底名场面",
     name: "苏格拉底",
     subtitle: "Same Type Guest / DLAH",
     description:
-      "名人行为幕：在雅典审判现场，用连续追问把控诉词拆成逻辑问题，坚持把“该如何生活”问到底。",
+      "死亡面前，先问定义，再谈情绪。",
     image:
       "./assets/celebrity-cameos/dlah-cyber-judge-socrates-cameo-white-bg-v2.png",
     alt: "赛博判官与苏格拉底的低多边形名场面合影",
@@ -164,13 +186,21 @@ function renderGuestScene(index = guestIndex) {
   isGuestMode = true;
   theaterShell.classList.add("is-guest");
   guestPull.setAttribute("aria-pressed", "true");
-  guestPull.querySelector(".cord-handle").textContent = "回正剧场";
-  judgeFlowButton.textContent = "回到审题幕";
+  guestPull.querySelector(".cord-handle").textContent = "切换参剧";
+  judgeFlowButton.textContent = "下一幕";
 
   sceneTitle.textContent = guestScene.title;
   sceneCount.textContent = guestScene.count;
+  if (questionLabel) {
+    questionLabel.textContent = guestScene.label;
+  }
   questionText.textContent = guestScene.question;
   judgeOutput.innerHTML = guestScene.tags.map((tag) => `<span>${tag}</span>`).join("");
+  danmakuItems.forEach((item, itemIndex) => {
+    if (item) {
+      item.textContent = guestScene.danmaku[itemIndex];
+    }
+  });
   celebrityImage.src = guestScene.image;
   celebrityImage.alt = guestScene.alt;
   celebrityPhotoLabel.textContent = guestScene.photoLabel;
@@ -191,11 +221,7 @@ function pullTheaterCord() {
   theaterShell.classList.add("is-turning");
 
   window.setTimeout(() => {
-    if (isGuestMode) {
-      renderScene(scenarioIndex);
-    } else {
-      renderGuestScene(guestIndex);
-    }
+    renderGuestScene(isGuestMode ? guestIndex + 1 : guestIndex);
   }, 360);
 
   window.setTimeout(() => {
@@ -218,10 +244,10 @@ celebrityButtons.forEach((button) => {
 
 judgeFlowButton.addEventListener("click", () => {
   if (isGuestMode) {
-    pullTheaterCord();
+    renderGuestScene(guestIndex + 1);
     return;
   }
-  renderScene(scenarioIndex + 1);
+  renderGuestScene(guestIndex);
 });
 
 guestPull.addEventListener("pointerdown", (event) => {
@@ -260,14 +286,23 @@ copyShareTextButton.addEventListener("click", () => {
   copyText(shareText.textContent.trim(), copyShareTextButton);
 });
 
+shareCopyOptions.forEach((button) => {
+  button.addEventListener("click", () => {
+    shareText.textContent = button.dataset.copy;
+    shareCopyOptions.forEach((option) => {
+      option.classList.toggle("active", option === button);
+    });
+  });
+});
+
 saveCardButton.addEventListener("click", () => {
   shareCard.scrollIntoView({ behavior: "smooth", block: "center" });
   setButtonDone(saveCardButton, "长按或截图保存");
 });
 
 restartButton.addEventListener("click", () => {
-  renderScene(0);
+  renderGuestScene(0);
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-renderScene(0);
+renderGuestScene(0);
