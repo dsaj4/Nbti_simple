@@ -51,7 +51,7 @@
                 <div class="share-mark">Cyber Judge · DLAH</div>
               </div>
 
-              <div class="judge-flow" aria-label="赛博判官剧目审题动效">
+              <div class="judge-flow" aria-label="场景云出题区">
                 <div class="stage-header">
                   <div>
                     <span class="stage-eyebrow" id="stageEyebrow">Cyber Court Theater</span>
@@ -59,22 +59,21 @@
                   </div>
                   <span class="stage-count" id="sceneCount">DLAH</span>
                 </div>
-                <div class="danmaku-lane" aria-hidden="true">
-                  <span id="danmakuOne">不吹不黑</span>
-                  <span id="danmakuTwo">纯路人</span>
-                  <span id="danmakuThree">有一说一</span>
-                  <span id="danmakuFour">这题还没判完</span>
-                </div>
                 <div class="stage-floor">
                   <div class="question-cloud" id="questionCloud">
                     <span class="cloud-tail"></span>
                     <strong id="questionLabel">场景云</strong>
-                    <p id="questionText">一群人明明可以把问题说清楚，偏偏用热闹掩盖标准缺席。你脑内的小型审题庭，已经开始开庭。</p>
+                    <div class="scene-lines" id="sceneLines" aria-live="polite">
+                      <p>大家都说差不多得了。</p>
+                      <p>方案看起来热闹，标准却还没站起来。</p>
+                      <p>场面已经糊成一锅粥。</p>
+                      <p class="scene-question">你怎么看？</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="hero-lockup">
+              <div class="hero-lockup actor-area" aria-label="演员演出区">
                 <div class="character-orbit">
                   <div class="orbit-ring ring-one"></div>
                   <div class="orbit-ring ring-two"></div>
@@ -91,7 +90,7 @@
                 </div>
               </div>
 
-              <section class="celebrity-scene" aria-label="同类型名人名场面">
+              <section class="celebrity-scene actor-area" aria-label="名人演员名场面">
                 <div class="photo-placeholder photo-frame">
                   <div class="photo-label" id="celebrityPhotoLabel" aria-hidden="true">罗永浩名场面</div>
                   <img
@@ -103,12 +102,12 @@
                 </div>
               </section>
 
-              <div class="answer-deck" aria-label="赛博判官回答区">
-                <div class="answer-label">判官回答</div>
+              <div class="answer-deck" aria-label="回答气泡区">
+                <div class="answer-label">回答气泡</div>
                 <div class="judge-output" id="judgeOutput">
-                  <span>先审题</span>
-                  <span>再锐评</span>
-                  <span>标准不能软</span>
+                  <span>“先审题。”</span>
+                  <span>“再锐评。”</span>
+                  <span>“标准不能软。”</span>
                 </div>
                 <div class="scene-switcher" aria-label="切换赛博判官审题剧目">
                   <button class="scene-button active" data-scene="type" type="button">类型形象</button>
@@ -182,17 +181,14 @@
               </div>
             </section>
 
-            <section class="report-module celebrity-commentary">
-              <p class="section-label">名人点评</p>
-              <div class="commentary-tabs" aria-label="切换名人点评">
-                <button class="commentary-tab active" data-commentary="0" type="button">罗永浩</button>
-                <button class="commentary-tab" data-commentary="1" type="button">苏格拉底</button>
+            <section class="report-module celebrity-commentary" id="commentaryPanel">
+              <p class="section-label" id="commentaryKicker">赛博判官自评</p>
+              <h2 id="commentaryTitle">赛博判官说</h2>
+              <div class="commentary-lines" id="commentaryLines" aria-live="polite">
+                <p>“我不是爱吵架，我只是对‘差不多得了’生理性过敏。场面可以乱，逻辑不能乱。你要是问我为什么这么较真——因为问题一旦被糊弄过去，后面所有努力都在陪跑。”</p>
+                <p>“所以我先审题，再锐评。不是为了赢，是为了让标准重新站起来。”</p>
               </div>
-              <h2 id="commentaryTitle">罗永浩自评：我这叫“现实驱动型系统更新”</h2>
-              <p id="commentaryBody">
-                “你们都说我打脸。行，我认。但一个人敢把几年前的发布会拿出来跟现在的自己对比，这事儿本身就挺赛博判官的。脸可以肿，逻辑不能塌。打脸归打脸，更新完系统继续干活。”
-              </p>
-              <blockquote id="commentaryQuote">罗永浩同款判官：打脸是版本更新，不是卸载重装。</blockquote>
+              <blockquote id="commentaryQuote">赛博判官判词：场面可以乱，逻辑不能乱。</blockquote>
             </section>
 
             <section class="report-module share-module">

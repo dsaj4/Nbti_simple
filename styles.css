@@ -665,7 +665,7 @@ h1 {
 
 .card-theater-shell .judge-flow {
   margin: 10px 20px 12px;
-  min-height: 174px;
+  min-height: 228px;
   border-color: rgba(255, 255, 255, 0.14);
   background:
     radial-gradient(circle at 50% 0%, rgba(244, 166, 42, 0.22), transparent 42%),
@@ -734,50 +734,19 @@ h1 {
   font-weight: 900;
 }
 
-.danmaku-lane {
-  position: absolute;
-  inset: 50px 0 auto;
-  z-index: 2;
-  height: 34px;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.danmaku-lane span {
-  position: absolute;
-  left: 100%;
-  white-space: nowrap;
-  color: rgba(79, 70, 229, 0.58);
-  font-size: 13px;
-  font-weight: 900;
-  animation: danmakuFly 8s linear infinite;
-}
-
-.danmaku-lane span:nth-child(2) {
-  top: 14px;
-  animation-delay: -2s;
-  color: rgba(240, 82, 99, 0.55);
-}
-
-.danmaku-lane span:nth-child(3) {
-  animation-delay: -4s;
-}
-
-.danmaku-lane span:nth-child(4) {
-  top: 15px;
-  animation-delay: -6s;
-  color: rgba(244, 166, 42, 0.68);
-}
-
 .question-cloud {
   position: relative;
-  width: min(410px, 100%);
-  margin: 26px auto 0;
+  width: min(430px, 100%);
+  margin: 18px auto 0;
   border: 1px solid rgba(33, 199, 217, 0.28);
   border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 14px 30px rgba(29, 36, 58, 0.1);
-  padding: 14px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.96)),
+    #fff;
+  box-shadow:
+    0 18px 36px rgba(29, 36, 58, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: 16px 20px 18px;
   text-align: left;
   transform-origin: center;
 }
@@ -791,11 +760,22 @@ h1 {
 }
 
 .question-cloud p {
-  margin: 0;
+  margin: 0 0 4px;
   color: #343947;
   font-size: 13px;
   font-weight: 800;
   line-height: 1.5;
+}
+
+.scene-lines p:last-child {
+  margin-bottom: 0;
+}
+
+.scene-question {
+  margin-top: 8px !important;
+  color: var(--coral) !important;
+  font-size: 15px !important;
+  font-weight: 950 !important;
 }
 
 .cloud-tail {
@@ -813,7 +793,7 @@ h1 {
 .answer-deck {
   position: relative;
   max-width: 540px;
-  margin: -6px auto 4px;
+  margin: 2px auto 4px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   background:
@@ -822,7 +802,7 @@ h1 {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 20px 42px rgba(0, 0, 0, 0.18);
-  padding: 30px 18px 18px;
+  padding: 28px 18px 18px;
 }
 
 .answer-deck::before {
@@ -858,23 +838,32 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 10px;
-  min-height: 42px;
+  min-height: 48px;
   flex-wrap: wrap;
 }
 
 .judge-output span {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  border-radius: 999px;
-  background: rgba(16, 17, 22, 0.92);
-  color: #fff;
-  padding: 8px 16px;
+  min-height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 18px 18px 18px 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #17181c;
+  padding: 9px 16px;
   font-size: 15px;
   font-weight: 900;
   box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 12px 24px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.judge-output span:nth-child(2) {
+  border-radius: 18px;
+}
+
+.judge-output span:nth-child(3) {
+  border-radius: 18px 18px 6px 18px;
 }
 
 .flow-button {
@@ -924,6 +913,22 @@ h1 {
 
 .judge-flow.is-judging .question-cloud {
   animation: cloudIntake 0.72s ease both;
+}
+
+.judge-flow.is-judging .scene-lines p {
+  animation: lineSpeak 0.42s ease both;
+}
+
+.judge-flow.is-judging .scene-lines p:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.judge-flow.is-judging .scene-lines p:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.judge-flow.is-judging .scene-lines p:nth-child(4) {
+  animation-delay: 0.2s;
 }
 
 .judge-flow.is-judging ~ .answer-deck .judge-output span {
@@ -1226,6 +1231,33 @@ h1 {
   line-height: 1.65;
 }
 
+.commentary-lines {
+  display: grid;
+  gap: 10px;
+}
+
+.commentary-lines p {
+  margin-bottom: 0;
+}
+
+.celebrity-commentary.is-speaking h2,
+.celebrity-commentary.is-speaking .commentary-lines p,
+.celebrity-commentary.is-speaking blockquote {
+  animation: speechPanelIn 0.44s ease both;
+}
+
+.celebrity-commentary.is-speaking .commentary-lines p:first-child {
+  animation-delay: 0.08s;
+}
+
+.celebrity-commentary.is-speaking .commentary-lines p:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.celebrity-commentary.is-speaking blockquote {
+  animation-delay: 0.3s;
+}
+
 .commentary-tabs {
   display: inline-flex;
   gap: 8px;
@@ -1424,6 +1456,28 @@ h1 {
   100% {
     opacity: 1;
     transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes lineSpeak {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes speechPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
