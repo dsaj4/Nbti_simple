@@ -20,8 +20,7 @@
             <p class="page-subtitle">场面可以糊，逻辑不能糊。标准可以高，嘴不能软。</p>
           </div>
           <div class="report-actions">
-            <button class="secondary-action" id="copyResultButton" type="button">复制判词</button>
-            <button class="primary-action" id="saveCardButton" type="button">存张梗图</button>
+            <button class="primary-action" id="copyResultButton" type="button">分享</button>
           </div>
         </div>
 
@@ -102,19 +101,11 @@
                 </div>
               </section>
 
-              <div class="answer-deck" aria-label="回答气泡区">
-                <div class="answer-label">回答气泡</div>
-                <div class="judge-output" id="judgeOutput">
-                  <span>“先审题，别急着站队。”</span>
-                  <span>“锐评可以，证据先过一遍。”</span>
-                  <span>“标准软了，后面全白干。”</span>
-                </div>
-                <div class="scene-switcher" aria-label="切换赛博判官审题剧目">
-                  <button class="scene-button active" data-scene="type" type="button">本尊</button>
-                  <button class="scene-button" data-guest="0" type="button">老罗幕</button>
-                  <button class="scene-button" data-guest="1" type="button">苏格拉底幕</button>
-                  <button class="flow-button" id="judgeFlowButton" type="button">换一趴</button>
-                </div>
+              <div class="scene-switcher" aria-label="切换赛博判官审题剧目">
+                <button class="scene-button active" data-scene="type" type="button">本尊</button>
+                <button class="scene-button" data-guest="0" type="button">老罗幕</button>
+                <button class="scene-button" data-guest="1" type="button">苏格拉底幕</button>
+                <button class="flow-button" id="judgeFlowButton" type="button">换一趴</button>
               </div>
 
               <div class="verdict-strip" aria-label="赛博判官口头禅">
@@ -162,7 +153,7 @@
 
           <aside class="report-panel" aria-label="赛博判官完整报告">
             <section class="report-module result-intro">
-              <p class="section-label">类型描述 · 有梗概括</p>
+              <p class="section-label">类型描述</p>
               <h2>你是赛博判官</h2>
               <p>
                 不吹不黑，纯路人视角。你不是爱杠，你是对“差不多得了”四个字生理性反胃。
@@ -195,15 +186,17 @@
             </section>
 
             <section class="report-module share-module">
-              <p class="section-label">页面底部 · 分享文案池</p>
+              <p class="section-label">分享文案</p>
               <blockquote id="shareText">
                 测完NBTI：赛博判官。不吹不黑，纯路人，有一说一。
               </blockquote>
-              <div class="share-copy-pool" aria-label="分享文案池">
-                <button class="share-copy-option active" data-copy="测完NBTI：赛博判官。不吹不黑，纯路人，有一说一。" type="button">标准版</button>
-                <button class="share-copy-option" data-copy="同事：“差不多得了。” 我脑子里：开庭！原告请陈述。" type="button">开庭版</button>
-                <button class="share-copy-option" data-copy="罗永浩打脸后继续直播，苏格拉底死前还在抠字眼——巧了，这俩都是我的工作人格。" type="button">名人版</button>
-                <button class="share-copy-option" data-copy="菜就多练，拉了就重写。赛博判官，参上。" type="button">狠话版</button>
+              <div class="share-copy-carousel" aria-label="分享文案切换器">
+                <button class="share-arrow" id="sharePrevButton" type="button" aria-label="上一条分享文案">‹</button>
+                <div class="share-copy-status" aria-live="polite">
+                  <strong id="shareCopyLabel">标准版</strong>
+                  <span id="shareCopyCount">1 / 4</span>
+                </div>
+                <button class="share-arrow" id="shareNextButton" type="button" aria-label="下一条分享文案">›</button>
               </div>
               <div class="report-actions inline-actions">
                 <button class="primary-action" id="copyShareTextButton" type="button">复制文案</button>
