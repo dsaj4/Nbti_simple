@@ -8,7 +8,7 @@
       name="description"
       content="“差不多得了”过敏人群集合。逻辑不能乱，标准不能软。"
     />
-    <link rel="stylesheet" href="./styles.css?v=4" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
   </head>
   <body>
     <main class="app-shell">
@@ -169,28 +169,36 @@
             <section class="report-module stat-module" aria-label="赛博判官稀有度与测评值">
               <div class="stat-head">
                 <div>
-                  <p class="section-label">测评面板</p>
+                  <p class="section-label">五相测评面板</p>
                   <h2>稀有度 S-</h2>
                 </div>
                 <strong>DLAH</strong>
               </div>
               <div class="radar-panel">
                 <div class="radar-orb" aria-hidden="true">
-                  <svg viewBox="0 0 220 220" role="img" aria-label="DLAH 测评值雷达图">
-                    <circle class="radar-ring outer" cx="110" cy="110" r="94" fill="none" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1.5" />
-                    <circle class="radar-ring mid" cx="110" cy="110" r="62" fill="none" stroke="rgba(45, 34, 24, 0.32)" stroke-width="1.5" />
-                    <circle class="radar-ring inner" cx="110" cy="110" r="30" fill="none" stroke="rgba(45, 34, 24, 0.28)" stroke-width="1.5" />
-                    <line class="radar-axis" x1="110" y1="14" x2="110" y2="206" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1" />
-                    <line class="radar-axis" x1="14" y1="110" x2="206" y2="110" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1" />
-                    <line class="radar-axis" x1="42" y1="42" x2="178" y2="178" stroke="rgba(45, 34, 24, 0.34)" stroke-width="1" />
-                    <line class="radar-axis" x1="178" y1="42" x2="42" y2="178" stroke="rgba(45, 34, 24, 0.34)" stroke-width="1" />
-                    <polygon class="radar-fill" points="110,26 194,110 110,31 31,110" fill="rgba(240, 82, 99, 0.72)" stroke="none" />
-                    <polygon class="radar-stroke" points="110,26 194,110 110,31 31,110" fill="none" stroke="rgba(210, 71, 46, 0.9)" stroke-width="2" />
+                  <svg viewBox="0 0 240 240" role="img" aria-label="DLAH 五相测评值雷达图">
+                    <polygon class="radar-grid outer" points="120,26 209,91 175,196 65,196 31,91" />
+                    <polygon class="radar-grid" points="120,50 186,98 161,177 79,177 54,98" />
+                    <polygon class="radar-grid" points="120,74 164,106 146,157 94,157 76,106" />
+                    <polygon class="radar-grid" points="120,98 141,113 133,138 107,138 99,113" />
+                    <line class="radar-axis" x1="120" y1="120" x2="120" y2="26" />
+                    <line class="radar-axis" x1="120" y1="120" x2="209" y2="91" />
+                    <line class="radar-axis" x1="120" y1="120" x2="175" y2="196" />
+                    <line class="radar-axis" x1="120" y1="120" x2="65" y2="196" />
+                    <line class="radar-axis" x1="120" y1="120" x2="31" y2="91" />
+                    <polygon class="radar-fill" points="120,48 186,99 164,180 82,172 45,96" />
+                    <polygon class="radar-stroke" points="120,48 186,99 164,180 82,172 45,96" />
                   </svg>
-                  <span class="radar-label top">解构力 A</span>
-                  <span class="radar-label right">敏捷度 A+</span>
-                  <span class="radar-label bottom">人文值 B</span>
-                  <span class="radar-label left">逻辑度 A</span>
+                  <span class="radar-label top">解构力</span>
+                  <span class="radar-label right-top">逻辑度</span>
+                  <span class="radar-label right-bottom">敏捷度</span>
+                  <span class="radar-label left-bottom">人文值</span>
+                  <span class="radar-label left-top">稀有度</span>
+                  <span class="radar-grade top">A</span>
+                  <span class="radar-grade right-top">A</span>
+                  <span class="radar-grade right-bottom">A+</span>
+                  <span class="radar-grade left-bottom">B</span>
+                  <span class="radar-grade left-top">S-</span>
                   <b>3.7%</b>
                 </div>
                 <div class="stat-list">
@@ -214,6 +222,11 @@
                     <i><em></em></i>
                     <strong>79</strong>
                   </div>
+                  <div style="--value: 96%; --bar: #8c5511">
+                    <span>R 稀有度</span>
+                    <i><em></em></i>
+                    <strong>S-</strong>
+                  </div>
                 </div>
               </div>
               <p class="stat-note">同类人群占比约 3.7%。稀有点不在“会骂”，在于混乱场面里还能把标准拎出来。</p>
@@ -234,6 +247,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=4"></script>
+    <script src="./script.js?v=5"></script>
   </body>
 </html>
