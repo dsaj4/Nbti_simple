@@ -93,12 +93,14 @@ h1 {
 .report-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
 }
 
 .primary-action,
-.secondary-action {
+.secondary-action,
+.demo-version-button {
   border-radius: 6px;
   cursor: pointer;
   padding: 12px 16px;
@@ -117,6 +119,29 @@ h1 {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.82);
   color: var(--ink);
+}
+
+.demo-version-switcher {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(231, 233, 239, 0.82);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 26px rgba(42, 48, 66, 0.08);
+}
+
+.demo-version-button {
+  border: 0;
+  background: transparent;
+  color: #555d6d;
+  padding: 9px 12px;
+}
+
+.demo-version-button.active {
+  background: #17181c;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(23, 24, 28, 0.14);
 }
 
 .card-theater-shell,
@@ -1053,6 +1078,20 @@ h1 {
     #fff;
 }
 
+.result-intro.is-copy-switching h2,
+.result-intro.is-copy-switching > p,
+.result-intro.is-copy-switching .result-pills span {
+  animation: copySwitchIn 0.36s ease both;
+}
+
+.result-intro.is-copy-switching > p {
+  animation-delay: 0.04s;
+}
+
+.result-intro.is-copy-switching .result-pills span {
+  animation-delay: 0.1s;
+}
+
 .result-pills {
   display: flex;
   flex-wrap: wrap;
@@ -1620,6 +1659,17 @@ h1 {
   }
 }
 
+@keyframes copySwitchIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 860px) {
   .share-stage,
   .breakdown-band {
@@ -1633,6 +1683,15 @@ h1 {
 
   .report-actions {
     width: 100%;
+    justify-content: flex-start;
+  }
+
+  .demo-version-switcher {
+    width: 100%;
+  }
+
+  .demo-version-button {
+    flex: 1;
   }
 
   .content-grid,

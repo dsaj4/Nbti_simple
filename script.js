@@ -19,6 +19,10 @@ const commentaryTitle = document.querySelector("#commentaryTitle");
 const commentaryLines = document.querySelector("#commentaryLines");
 const commentaryQuote = document.querySelector("#commentaryQuote");
 const copyResultButton = document.querySelector("#copyResultButton");
+const demoVersionButtons = document.querySelectorAll(".demo-version-button");
+const typeIntroTitle = document.querySelector("#typeIntroTitle");
+const typeIntroText = document.querySelector("#typeIntroText");
+const typeIntroPills = document.querySelector("#typeIntroPills");
 
 const extraVerdicts = [
   "我先锐评",
@@ -27,6 +31,27 @@ const extraVerdicts = [
   "建议重开",
   "此处扣分",
 ];
+
+const demoVersions = {
+  standard: {
+    title: "标准版",
+    typeIntro: {
+      title: "你是赛博判官",
+      text:
+        "不吹不黑，纯路人视角。你不是爱杠，是对“差不多得了”生理性反胃。脑子里自动开庭：原告叫“这不对”，被告叫“那你说咋办”，你负责敲法槌。",
+      pills: ["不吹不黑", "纯路人", "有一说一", "菜就多练"],
+    },
+  },
+  meme: {
+    title: "网感语录版",
+    typeIntro: {
+      title: "赛博判官：互联网审题庭常驻嘉宾",
+      text:
+        "你不是杠精，你是评论区质检员。别人一句“差不多得了”，你脑内已经开始调监控、翻证据、拉时间线。该夸就夸，该喷就喷，主打一个不收钱也不乱判。场面可以开香槟，逻辑不能开盲盒。",
+      pills: ["不尬黑", "开庭了", "证据呢", "别带节奏", "这波要重审"],
+    },
+  },
+};
 
 const typeScene = {
   title: "你的报告类型是：赛博判官",
@@ -63,6 +88,9 @@ const guestScenes = [
       "前后两套嘴，撞了个稀碎。",
     ],
     question: "这算打脸现场，还是版本升级补丁？",
+    quotes: {
+      meme: "“我不是为了输赢，我就是认真。”",
+    },
     tags: ["“脸先放这，不赖账。”", "“系统升级中，请稍后。”", "“活儿不等人，干就完了。”"],
     photoLabel: "罗永浩名场面",
     name: "罗永浩",
@@ -90,6 +118,9 @@ const guestScenes = [
       "全场等他认怂，他却举手：“请问‘罪’的定义是什么？”",
     ],
     question: "死线都到家门口了，你还要先抠字眼？",
+    quotes: {
+      meme: "“未经审视的人生是不值得过的。”",
+    },
     tags: ["“先问定义，别急着判。”", "“概念不过审，讨论不生效。”", "“追到答案服气为止。”"],
     photoLabel: "苏格拉底名场面",
     name: "苏格拉底",
@@ -110,6 +141,7 @@ const guestScenes = [
 ];
 
 let verdictIndex = 0;
+let activeDemoVersion = "standard";
 let guestIndex = -1;
 let isGuestMode = false;
 let isTurning = false;
@@ -188,6 +220,29 @@ function runStageTimeline() {
     );
 }
 
+function getSceneQuestion(scene) {
+  return scene.quotes?.[activeDemoVersion] || scene.question;
+}
+
+function renderTypeIntro() {
+  const intro = demoVersions[activeDemoVersion].typeIntro;
+  const introPanel = typeIntroText.closest(".result-intro");
+
+  typeIntroTitle.textContent = intro.title;
+  typeIntroText.textContent = intro.text;
+  typeIntroPills.innerHTML = intro.pills.map((pill) => `<span>${pill}</span>`).join("");
+
+  introPanel.classList.remove("is-copy-switching");
+  void introPanel.offsetWidth;
+  introPanel.classList.add("is-copy-switching");
+}
+
+function updateDemoButtons() {
+  demoVersionButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.demoVersion === activeDemoVersion);
+  });
+}
+
 function updateStageCopy(scene) {
   if (stageEyebrow) {
     stageEyebrow.textContent = scene.eyebrow;
@@ -199,7 +254,7 @@ function updateStageCopy(scene) {
   }
   sceneLines.innerHTML = [
     ...scene.lines.map((line) => `<p>${line}</p>`),
-    `<p class="scene-question">${scene.question}</p>`,
+    `<p class="scene-question">${getSceneQuestion(scene)}</p>`,
   ].join("");
   commentaryKicker.textContent = scene.commentary.kicker;
   commentaryTitle.textContent = scene.commentary.title;
@@ -267,6 +322,24 @@ function pullTheaterCord() {
   }, 820);
 }
 
+demoVersionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const nextVersion = button.dataset.demoVersion;
+    if (!demoVersions[nextVersion] || nextVersion === activeDemoVersion) return;
+
+    activeDemoVersion = nextVersion;
+    updateDemoButtons();
+    renderTypeIntro();
+
+    if (isGuestMode) {
+      renderGuestScene(guestIndex);
+      return;
+    }
+
+    renderTypeScene();
+  });
+});
+
 sceneButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (button.dataset.scene === "type") {
@@ -317,4 +390,6 @@ copyResultButton.addEventListener("click", () => {
   copyText("测完 NBTI：赛博判官。不吹不黑，纯路人，有一说一。逻辑不崩，场面随便糊。", copyResultButton);
 });
 
+updateDemoButtons();
+renderTypeIntro();
 renderTypeScene();

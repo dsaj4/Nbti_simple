@@ -8,7 +8,7 @@
       name="description"
       content="“差不多得了”过敏人群集合。逻辑不能乱，标准不能软。"
     />
-    <link rel="stylesheet" href="./styles.css?v=5" />
+    <link rel="stylesheet" href="./styles.css?v=6" />
   </head>
   <body>
     <main class="app-shell">
@@ -20,6 +20,14 @@
             <p class="page-subtitle">场面可以糊，逻辑不能糊。标准可以高，嘴不能软。</p>
           </div>
           <div class="report-actions">
+            <div class="demo-version-switcher" aria-label="切换报告展示版本">
+              <button class="demo-version-button active" data-demo-version="standard" type="button">
+                标准版
+              </button>
+              <button class="demo-version-button" data-demo-version="meme" type="button">
+                网感语录版
+              </button>
+            </div>
             <button class="primary-action" id="copyResultButton" type="button">分享</button>
           </div>
         </div>
@@ -154,11 +162,11 @@
           <aside class="report-panel" aria-label="赛博判官完整报告">
             <section class="report-module result-intro">
               <p class="section-label">类型描述</p>
-              <h2>你是赛博判官</h2>
-              <p>
+              <h2 id="typeIntroTitle">你是赛博判官</h2>
+              <p id="typeIntroText" aria-live="polite">
                 不吹不黑，纯路人视角。你不是爱杠，是对“差不多得了”生理性反胃。脑子里自动开庭：原告叫“这不对”，被告叫“那你说咋办”，你负责敲法槌。
               </p>
-              <div class="result-pills">
+              <div class="result-pills" id="typeIntroPills">
                 <span>不吹不黑</span>
                 <span>纯路人</span>
                 <span>有一说一</span>
@@ -247,6 +255,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=5"></script>
+    <script src="./script.js?v=6"></script>
   </body>
 </html>
