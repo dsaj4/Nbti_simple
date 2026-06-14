@@ -19,13 +19,6 @@ const commentaryTitle = document.querySelector("#commentaryTitle");
 const commentaryLines = document.querySelector("#commentaryLines");
 const commentaryQuote = document.querySelector("#commentaryQuote");
 const copyResultButton = document.querySelector("#copyResultButton");
-const copyShareTextButton = document.querySelector("#copyShareTextButton");
-const restartButton = document.querySelector("#restartButton");
-const shareText = document.querySelector("#shareText");
-const sharePrevButton = document.querySelector("#sharePrevButton");
-const shareNextButton = document.querySelector("#shareNextButton");
-const shareCopyLabel = document.querySelector("#shareCopyLabel");
-const shareCopyCount = document.querySelector("#shareCopyCount");
 
 const extraVerdicts = [
   "我先锐评",
@@ -116,28 +109,8 @@ const guestScenes = [
   },
 ];
 
-const shareCopies = [
-  {
-    label: "标准版",
-    text: "测完NBTI：赛博判官。不吹不黑，纯路人，有一说一。",
-  },
-  {
-    label: "开庭版",
-    text: "同事：“差不多得了。” 我脑子里：开庭！原告请陈述。",
-  },
-  {
-    label: "名人版",
-    text: "罗永浩打脸后继续直播，苏格拉底死前还在抠字眼——巧了，这俩都是我的工作人格。",
-  },
-  {
-    label: "狠话版",
-    text: "菜就多练，拉了就重写。赛博判官，参上。",
-  },
-];
-
 let verdictIndex = 0;
 let guestIndex = -1;
-let shareCopyIndex = 0;
 let isGuestMode = false;
 let isTurning = false;
 let pullStartY = null;
@@ -234,15 +207,6 @@ function updateStageCopy(scene) {
     .map((paragraph) => `<p>${paragraph}</p>`)
     .join("");
   commentaryQuote.textContent = scene.commentary.quote;
-}
-
-function renderShareCopy(nextIndex = shareCopyIndex) {
-  const safeIndex = (nextIndex + shareCopies.length) % shareCopies.length;
-  const copy = shareCopies[safeIndex];
-  shareCopyIndex = safeIndex;
-  shareText.textContent = copy.text;
-  shareCopyLabel.textContent = copy.label;
-  shareCopyCount.textContent = `${safeIndex + 1} / ${shareCopies.length}`;
 }
 
 function updateSceneButtons(activeMode, activeGuest = -1) {
@@ -353,22 +317,4 @@ copyResultButton.addEventListener("click", () => {
   copyText("测完 NBTI：赛博判官。不吹不黑，纯路人，有一说一。逻辑不崩，场面随便糊。", copyResultButton);
 });
 
-copyShareTextButton.addEventListener("click", () => {
-  copyText(shareText.textContent.trim(), copyShareTextButton);
-});
-
-sharePrevButton.addEventListener("click", () => {
-  renderShareCopy(shareCopyIndex - 1);
-});
-
-shareNextButton.addEventListener("click", () => {
-  renderShareCopy(shareCopyIndex + 1);
-});
-
-restartButton.addEventListener("click", () => {
-  renderTypeScene();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 renderTypeScene();
-renderShareCopy();

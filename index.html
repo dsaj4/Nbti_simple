@@ -8,7 +8,7 @@
       name="description"
       content="“差不多得了”过敏人群集合。逻辑不能乱，标准不能软。"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
   </head>
   <body>
     <main class="app-shell">
@@ -156,16 +156,7 @@
               <p class="section-label">类型描述</p>
               <h2>你是赛博判官</h2>
               <p>
-                不吹不黑，纯路人视角。你不是爱杠，你是对“差不多得了”四个字生理性反胃。
-              </p>
-              <p>
-                脑子里自动开庭：原告叫“这不对”，被告叫“那你说咋办”，你是那个敲法槌的。
-              </p>
-              <p>
-                罗永浩负责打脸后继续直播，苏格拉底负责死到临头还举手提问——巧了，这俩都是你的职场分身。
-              </p>
-              <p>
-                核心 KPI：场面可以糊，逻辑不能糊。
+                不吹不黑，纯路人视角。你不是爱杠，是对“差不多得了”生理性反胃。脑子里自动开庭：原告叫“这不对”，被告叫“那你说咋办”，你负责敲法槌。
               </p>
               <div class="result-pills">
                 <span>不吹不黑</span>
@@ -173,6 +164,59 @@
                 <span>有一说一</span>
                 <span>菜就多练</span>
               </div>
+            </section>
+
+            <section class="report-module stat-module" aria-label="赛博判官稀有度与测评值">
+              <div class="stat-head">
+                <div>
+                  <p class="section-label">测评面板</p>
+                  <h2>稀有度 S-</h2>
+                </div>
+                <strong>DLAH</strong>
+              </div>
+              <div class="radar-panel">
+                <div class="radar-orb" aria-hidden="true">
+                  <svg viewBox="0 0 220 220" role="img" aria-label="DLAH 测评值雷达图">
+                    <circle class="radar-ring outer" cx="110" cy="110" r="94" fill="none" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1.5" />
+                    <circle class="radar-ring mid" cx="110" cy="110" r="62" fill="none" stroke="rgba(45, 34, 24, 0.32)" stroke-width="1.5" />
+                    <circle class="radar-ring inner" cx="110" cy="110" r="30" fill="none" stroke="rgba(45, 34, 24, 0.28)" stroke-width="1.5" />
+                    <line class="radar-axis" x1="110" y1="14" x2="110" y2="206" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1" />
+                    <line class="radar-axis" x1="14" y1="110" x2="206" y2="110" stroke="rgba(45, 34, 24, 0.42)" stroke-width="1" />
+                    <line class="radar-axis" x1="42" y1="42" x2="178" y2="178" stroke="rgba(45, 34, 24, 0.34)" stroke-width="1" />
+                    <line class="radar-axis" x1="178" y1="42" x2="42" y2="178" stroke="rgba(45, 34, 24, 0.34)" stroke-width="1" />
+                    <polygon class="radar-fill" points="110,26 194,110 110,31 31,110" fill="rgba(240, 82, 99, 0.72)" stroke="none" />
+                    <polygon class="radar-stroke" points="110,26 194,110 110,31 31,110" fill="none" stroke="rgba(210, 71, 46, 0.9)" stroke-width="2" />
+                  </svg>
+                  <span class="radar-label top">解构力 A</span>
+                  <span class="radar-label right">敏捷度 A+</span>
+                  <span class="radar-label bottom">人文值 B</span>
+                  <span class="radar-label left">逻辑度 A</span>
+                  <b>3.7%</b>
+                </div>
+                <div class="stat-list">
+                  <div style="--value: 88%; --bar: #21c7d9">
+                    <span>D 解构力</span>
+                    <i><em></em></i>
+                    <strong>88</strong>
+                  </div>
+                  <div style="--value: 84%; --bar: #4f46e5">
+                    <span>L 逻辑度</span>
+                    <i><em></em></i>
+                    <strong>84</strong>
+                  </div>
+                  <div style="--value: 91%; --bar: #f05263">
+                    <span>A 敏捷度</span>
+                    <i><em></em></i>
+                    <strong>91</strong>
+                  </div>
+                  <div style="--value: 79%; --bar: #f4a62a">
+                    <span>H 人文值</span>
+                    <i><em></em></i>
+                    <strong>79</strong>
+                  </div>
+                </div>
+              </div>
+              <p class="stat-note">同类人群占比约 3.7%。稀有点不在“会骂”，在于混乱场面里还能把标准拎出来。</p>
             </section>
 
             <section class="report-module celebrity-commentary" id="commentaryPanel">
@@ -185,29 +229,11 @@
               <blockquote id="commentaryQuote">赛博判官金句：逻辑不崩，场面随便糊。</blockquote>
             </section>
 
-            <section class="report-module share-module">
-              <p class="section-label">分享文案</p>
-              <blockquote id="shareText">
-                测完NBTI：赛博判官。不吹不黑，纯路人，有一说一。
-              </blockquote>
-              <div class="share-copy-carousel" aria-label="分享文案切换器">
-                <button class="share-arrow" id="sharePrevButton" type="button" aria-label="上一条分享文案">‹</button>
-                <div class="share-copy-status" aria-live="polite">
-                  <strong id="shareCopyLabel">标准版</strong>
-                  <span id="shareCopyCount">1 / 4</span>
-                </div>
-                <button class="share-arrow" id="shareNextButton" type="button" aria-label="下一条分享文案">›</button>
-              </div>
-              <div class="report-actions inline-actions">
-                <button class="primary-action" id="copyShareTextButton" type="button">复制文案</button>
-                <button class="secondary-action" id="restartButton" type="button">重新测一次</button>
-              </div>
-            </section>
           </aside>
         </div>
       </section>
     </main>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=4"></script>
   </body>
 </html>
